@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#Set the resolution of capturing video to be 640x480, set the format of the video to be mjpeg, set resolu
+v4l2-ctl --set-fmt-video=width=640,height=480,pixelformat=1
+v4l2-ctl --set-parm=7.5
+
+# Pipe the output of capture into avconv 
+# avconv "-f video4linux2 -input_format mjpeg" Tell device driver video4linux2 to capture input in format mjpeg
+#        "-i /dev/video0"  Take the input from the pipe /dev/video0
+#	 "-vcodec h263p" Transcode the stream to h263p
+#        "-r" Set the number of frames per image of the output stream
+# 	 "-f rtp rtp://192.168.142.140:1234/" Force rtp to output to address of my PC on port 1234
+
+avconv -f video4linux2 -input_format mjpeg -r 7.5 -i /dev/video0 -vcodec h263p -r 7.5 -f rtp rtp://192.168.142.140:1234/

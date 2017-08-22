@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Pipe the output data get by avconv to output.avi 
+# avconv "-f video4linux2 -input_format mjpeg" Tell device driver video4linux2 to capture input in format mjpeg
+#        "-i /dev/video0"  Take the input from the pipe /dev/video0
+#	 "-vcodec h263p" Transcode the stream to h263p
+#        "-r" Set the number of frames per image of the output stream 
+# 	 "output.avi" Set output file to be .avi
+
+avconv -f video4linux2 -input_format mjpeg -r 7.5 -i /dev/video0 -vcodec h263p -r 7.5 output.avi

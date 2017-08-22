@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# -i --- input source (/dev/video0)
+# -f --- frame rate (15)
+# -r --- resolution (640x480)
+# -o --- output is going to the web (-w) on port 8080
+# -p --- output port (8080)
+./mjpg_streamer -i "./input_uvc.so -d /dev/video0 -n -f 15 -r 640x480" -o ".
+/output_http.so -p 8080 -n -w ./www"
